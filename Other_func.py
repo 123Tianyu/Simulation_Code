@@ -9,7 +9,7 @@ def param_set(data):
         "N": int(data['N']),                        # AP天线数
         "K": int(data['K']),                        # 单天线用户数
         "Sample_num" : int(data["Sample_num"]),     # 样本数
-        "training_sets_index": 0.8,                 # 训练集占全部数据集的比例
+        "training_sets_index": 0.5,                 # 训练集占全部数据集的比例
         "times": 2000,                               # 进行联邦学习的次数
         "epochs_num": 10,                           # 迭代轮数
         "batch_size": 64,                           # mini-batch的大小
@@ -17,7 +17,7 @@ def param_set(data):
         "acc_index": 1e-2,                          # 计算准确率判断为正确所允许的最大误差值
         "User_num": int(data['M']),                 # 联邦学习参与训练的AP集长度
         "select_num": 5,                            # 每轮联邦学习参与的AP个数
-        "predict_data_len": int(0.8*data["Sample_num"]),  # 用于预测的数据长
+        "predict_data_len": int(0.5*data["Sample_num"]),  # 用于预测的数据长
         "input_size": int(3 * data['K'] * data['N']),  # 输入层神经元个数
         "output_size": int(2 * data['K'] * data['N']),  # 输出层神经元个数
         "Product_factor": (data['tau_c'] - data['tau_p']) / data['tau_c']
