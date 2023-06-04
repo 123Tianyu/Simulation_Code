@@ -74,11 +74,10 @@ predict_data_Max, predict_data_Min = [],[]
 predict_label_Max, predict_label_Min = [],[]
 
 for u in range(param["User_num"]):
-    data_normalization, data_Max, data_Min = Data_normalization(Hhat_data_AP_vector[u])
-    label_normalization, label_Max, label_Min = Data_normalization(V_MMSE_data_AP[u])
+    data_normalization, data_Max, data_Min = Data_normalization(test_data[u])
+    label_normalization, label_Max, label_Min = Data_normalization(test_label[u])
 
-    Predict_data.append(data_get(data_normalization[0:param["predict_data_len"],:],
-                         label_normalization[0:param["predict_data_len"],:],param["batch_size"], shuffle_choice=False))
+    Predict_data.append(data_get(data_normalization,label_normalization,param["batch_size"], shuffle_choice=False))
     predict_data_Max.append(data_Max)
     predict_data_Min.append(data_Min)
     predict_label_Max.append(label_Max)
