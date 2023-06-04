@@ -3,7 +3,7 @@ import xlrd
 
 excel_loss = []
 # 要复制的目标文件目录
-cp_excel_file_path = ['M9_N1_K4_Loss_Acc.xlsx','M9_N1_K6_Loss_Acc.xlsx','M9_N2_K6_Loss_Acc.xlsx']
+cp_excel_file_path = ['M9_N1_K4_Loss_Acc.xlsx','M9_N1_K8_Loss_Acc.xlsx','M9_N2_K8_Loss_Acc_2.xlsx']
 for i in range(len(cp_excel_file_path)):
     # 如果已存在要创建的文件，删除（目的是可以让代码重复运行不出现已存在文件现象）
     if os.path.exists(cp_excel_file_path[i]):
@@ -24,15 +24,17 @@ font_dic = {"family":"Times New Roman",
             "size":12}    # 设置坐标轴标题的字体等参数
 
 plt.figure(1)
-line1, = plt.plot(range(1,len(excel_loss[0])+1), excel_loss[0], '-.', linewidth=2.5)
-line2, = plt.plot(range(1,len(excel_loss[1])+1), excel_loss[1], ':', linewidth=2.5)
-line3, = plt.plot(range(1,len(excel_loss[2])+1), excel_loss[2], '--', linewidth=2.5)
-labels = ["M=1, K=4","M=1, K=6","M=2, K=6"]
-handles = [line1, line2, line3]
+length = len(excel_loss[0])
+step = 5
+line1, = plt.plot(range(1,len(excel_loss[0])+1,step), excel_loss[0][0:length:step], '-', linewidth=2.5)
+line2, = plt.plot(range(1,len(excel_loss[1])+1,step), excel_loss[1][0:length:step], ':', linewidth=2.5)
+line3, = plt.plot(range(1,len(excel_loss[2])+1,step), excel_loss[2][0:length:step], '--', linewidth=2.5)
+labels = ["M=1, K=4","M=1, K=8","M=2, K=8"]
+handles = [line1,line2,line3]
 from matplotlib.legend_handler import HandlerLine2D
 handler = HandlerLine2D(numpoints=4)
 plt.rcParams.update({'legend.fontsize': 11})
-plt.legend(handles=handles, labels=labels, handler_map={line1: handler, line2: handler, line3: handler}, handlelength=3)
+plt.legend(handles=handles, labels=labels, handler_map={line1: handler,line2: handler,line3: handler}, handlelength=3)
 
 # plt.legend(["M=1, K=4","M=1, K=6","M=2, K=6"],loc='upper right')
 plt.xlabel(r'$Number$ $of$ $iterations$', fontdict=font_dic)
