@@ -17,7 +17,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 # # 获取matlab产生的数据
 import hdf5storage
-file = '.\Simulation_M9_N2_K8_2.mat'
+file = '.\Simulation_M9_N2_K8.mat'
 data = hdf5storage.loadmat(file)
 # 导入后的data是一个字典，取出想要的变量字段即可。
 
@@ -41,7 +41,7 @@ local_model_loss_MRC = []
 local_model_optimizer_MRC = []
 
 # 在指定路径中寻找之前训练保存的模型参数文件  存在则获取之前的模型参数继续训练  否则重新训练
-Path = 'Model_param_MMSE_M9_N2_K8_simulation_3.pkl'
+Path = 'Model_param_MMSE_M9_N2_K8_simulation.pkl'
 if not isexist(name=Path):
     exist_file = 0                # 当该变量为0 则说明当前路径下没有存储模型参数  因此全局模型权重为计算机算计分配
     global_model = DNN_Network(input_size=param['input_size'], output_size=param['output_size'])
