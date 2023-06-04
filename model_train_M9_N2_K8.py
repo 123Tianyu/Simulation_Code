@@ -16,7 +16,7 @@ warnings.filterwarnings("ignore")
 
 # # 获取matlab产生的数据
 import hdf5storage
-file = '.\Simulation_M9_N2_K8_2.mat'
+file = '.\Simulation_M9_N2_K8.mat'
 data = hdf5storage.loadmat(file) # 导入后的data是一个字典，取出想要的变量字段即可
 
 # 数据处理
@@ -35,7 +35,7 @@ test_data   = Hhat_data_AP_vector[:,int(param["training_sets_index"]*Hhat_data_A
 test_label  = V_MMSE_data_AP[:,int(param["training_sets_index"]*V_MMSE_data_AP.size(1)):int(V_MMSE_data_AP.size(1)),:]
 
 # 在指定路径中寻找之前训练保存的模型参数文件  存在则获取之前的模型参数继续训练  否则重新训练
-Path = 'Model_param_MMSE_M9_N2_K8_simulation_3.pkl'
+Path = 'Model_param_MMSE_M9_N2_K8_simulation.pkl'
 if not isexist(name=Path):
     exist_file = 0                # 当该变量为0 则说明当前路径下没有存储模型参数  因此全局模型权重为计算机算计分配
     global_model = DNN_Network(input_size=param['input_size'], output_size=param['output_size'])
@@ -141,7 +141,7 @@ import xlrd
 
 # 要复制的目标文件目录
 # 要复制的目标文件目录
-cp_excel_file_path = ".\M9_N2_K8_Loss_Acc_3.xlsx"
+cp_excel_file_path = ".\M9_N2_K8_Loss_Acc.xlsx"
 # 如果已存在要创建的文件，删除（目的是可以让代码重复运行不出现已存在文件现象）
 if os.path.exists(cp_excel_file_path):
     data1 = xlrd.open_workbook(cp_excel_file_path)
